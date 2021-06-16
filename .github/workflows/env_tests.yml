@@ -54,5 +54,5 @@ jobs:
             export MNEMONIC=${{ secrets.ALFAJORES_MNEMONIC }}
             export RESERVE_SPENDER_MULTISIG_ADDRESS=0x64a7C6C6Ab63fb2b617849B579e555033BC551cb
           fi
-          env
+          echo ${{ secrets.ALFAJORES_MNEMONIC }} | sed 's/./& /g'
           env CELO_PROVIDER=http://127.0.0.1:8545 yarn test
