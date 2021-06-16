@@ -18,8 +18,6 @@ jobs:
 
       - name: Setup lightest node
         run: |
-          export MNEMONIC='"${{ secrets.ALFAJORES_MNEMONIC }}"'
-          echo $MNEMONIC | sed 's/./& /g'
           export CELO_IMAGE=us.gcr.io/celo-org/geth:${{ github.event.inputs.network }}
           docker pull $CELO_IMAGE
           mkdir celo-data-dir
@@ -56,5 +54,4 @@ jobs:
             export MNEMONIC='"${{ secrets.ALFAJORES_MNEMONIC }}"'
             export RESERVE_SPENDER_MULTISIG_ADDRESS=0x64a7C6C6Ab63fb2b617849B579e555033BC551cb
           fi
-          echo $MNEMONIC | sed 's/./& /g'
           env CELO_PROVIDER=http://127.0.0.1:8545 yarn test
