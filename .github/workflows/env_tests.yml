@@ -18,11 +18,11 @@ jobs:
 
       - name: Setup lightest node
         run: |
-          export CELO_IMAGE=us.gcr.io/celo-org/geth:${{ github.event.inputs.network }}
+          export CELO_IMAGE=us.gcr.io/celo-org/geth:alfajores
           docker pull $CELO_IMAGE
           mkdir celo-data-dir
           cd celo-data-dir
-          docker run --name celo-fullnode -d --restart unless-stopped --stop-timeout 300 -p 127.0.0.1:8545:8545 -p 127.0.0.1:8546:8546 -p 30303:30303 -p 30303:30303/udp -v $PWD:/root/.celo $CELO_IMAGE --verbosity 3 --syncmode lightest --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3,debug,admin,personal --light.serve 90 --light.maxpeers 1000 --maxpeers 1100 --nousb --${{ github.event.inputs.network }} --datadir /root/.celo
+          docker run --name celo-fullnode -d --restart unless-stopped --stop-timeout 300 -p 127.0.0.1:8545:8545 -p 127.0.0.1:8546:8546 -p 30303:30303 -p 30303:30303/udp -v $PWD:/root/.celo $CELO_IMAGE --verbosity 3 --syncmode lightest --rpc --rpcaddr 0.0.0.0 --rpcapi eth,net,web3,debug,admin,personal --light.serve 90 --light.maxpeers 1000 --maxpeers 1100 --nousb --alfajores --datadir /root/.celo
           cd ..
 
       - name: Checking if node is synced
@@ -46,12 +46,13 @@ jobs:
       - name: Run the env tests
         run: |
           cd packages/env-tests/
-          if [ ${{ github.event.inputs.network }} == 'alfajores' ]
-          then
-            export TWILIO_ADDRESS_SID=${{ secrets.ALFAJORES_TWILIO_ADDRESS_SID }}
-            export TWILIO_ACCOUNT_AUTH_TOKEN=${{ secrets.ALFAJORERS_TWILIO_ACCOUNT_AUTH_TOKEN }}
-            export TWILIO_ACCOUNT_SID=${{ secrets.ALFAJORES_TWILIO_ACCOUNT_SID }}
-            export MNEMONIC='"${{ secrets.ALFAJORES_MNEMONIC }}"'
-            export RESERVE_SPENDER_MULTISIG_ADDRESS=0x64a7C6C6Ab63fb2b617849B579e555033BC551cb
-          fi
-          env CELO_PROVIDER=http://127.0.0.1:8545 yarn test
+          #if [ ${{ github.event.inputs.network }} == 'alfajores' ]
+          #then
+          #  export TWILIO_ADDRESS_SID=${{ secrets.ALFAJORES_TWILIO_ADDRESS_SID }}
+          #  export TWILIO_ACCOUNT_AUTH_TOKEN=${{ secrets.ALFAJORERS_TWILIO_ACCOUNT_AUTH_TOKEN }}
+          #  export TWILIO_ACCOUNT_SID=${{ secrets.ALFAJORES_TWILIO_ACCOUNT_SID }}
+          #  export MNEMONIC='"${{ secrets.ALFAJORES_MNEMONIC }}"'
+          #  export RESERVE_SPENDER_MULTISIG_ADDRESS=0x64a7C6C6Ab63fb2b617849B579e555033BC551cb
+          #fi
+          #env CELO_PROVIDER=http://127.0.0.1:8545 yarn test
+          env TWILIO_ADDRESS_SID=ACb4de9b2b3bb106c9122bb2aa5fdcadd9 TWILIO_ACCOUNT_AUTH_TOKEN=f8ec28ebfb8e549b607ab143372d59d3 TWILIO_ACCOUNT_SID=ACb4de9b2b3bb106c9122bb2aa5fdcadd9 MNEMONIC="jealous phrase collect boat atom endorse mask annual salt bus dune walnut enemy shuffle gauge tortoise smooth man husband chase quality stem enroll say" RESERVE_SPENDER_MULTISIG_ADDRESS=0x64a7C6C6Ab63fb2b617849B579e555033BC551cb CELO_PROVIDER=http://127.0.0.1:8545 yarn test
