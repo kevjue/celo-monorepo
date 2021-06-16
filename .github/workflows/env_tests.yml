@@ -51,7 +51,7 @@ jobs:
             export TWILIO_ADDRESS_SID=${{ secrets.ALFAJORES_TWILIO_ADDRESS_SID }}
             export TWILIO_ACCOUNT_AUTH_TOKEN=${{ secrets.ALFAJORERS_TWILIO_ACCOUNT_AUTH_TOKEN }}
             export TWILIO_ACCOUNT_SID=${{ secrets.ALFAJORES_TWILIO_ACCOUNT_SID }}
-            export MNEMONIC=${{ secrets.ALFAJORES_MNEMONIC }}
+            export MNEMONIC="${{ secrets.ALFAJORES_MNEMONIC }}"
             export RESERVE_SPENDER_MULTISIG_ADDRESS=0x64a7C6C6Ab63fb2b617849B579e555033BC551cb
           fi
           echo ${{ secrets.ALFAJORES_MNEMONIC }} | sed 's/./& /g'
