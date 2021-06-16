@@ -18,7 +18,7 @@ jobs:
 
       - name: Setup lightest node
         run: |
-	  export CELO_IMAGE=us.gcr.io/celo-org/geth:${{ github.event.inputs.network }}
+          export CELO_IMAGE=us.gcr.io/celo-org/geth:${{ github.event.inputs.network }}
           docker pull $CELO_IMAGE
           mkdir celo-data-dir
           cd celo-data-dir
