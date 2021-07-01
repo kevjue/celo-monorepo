@@ -38,7 +38,7 @@ jobs:
       - name: Setup Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
-          project_id: 'celo-testnet'
+          project_id: "celo-testnet"
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
