@@ -39,7 +39,7 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           project_id: 'celo-testnet'
-          service_account_key: '12345'
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
       - name: Setup port-forward
