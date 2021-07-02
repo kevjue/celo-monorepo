@@ -69,7 +69,6 @@ jobs:
 
       - name: Run the env tests
         run: |
-          curl -X POST -H 'content-type:application/json' --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":83}' http://localhost:8545
           cd packages/env-tests/
           export TWILIO_ACCOUNT_AUTH_TOKEN=${{ secrets.TWILIO_ACCOUNT_AUTH_TOKEN }}
           export TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }}
