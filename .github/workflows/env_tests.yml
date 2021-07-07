@@ -96,4 +96,4 @@ jobs:
               export RESERVE_SPENDER_MULTISIG_ADDRESS=0x554Fca0f7c465cd2F8C305a10bF907A2034d2a19
               ;;
           esac
-          env CELO_PROVIDER=http://127.0.0.1:8545 jest --runInBand $TEST_NAME_PATTERN
+          env CELO_PROVIDER=http://127.0.0.1:8545 ./node_modules/.bin/jest --runInBand $TEST_NAME_PATTERN
