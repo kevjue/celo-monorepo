@@ -72,7 +72,7 @@ jobs:
           cd packages/env-tests/
           export TWILIO_ACCOUNT_AUTH_TOKEN=${{ secrets.TWILIO_ACCOUNT_AUTH_TOKEN }}
           export TWILIO_ACCOUNT_SID=${{ secrets.TWILIO_ACCOUNT_SID }}
-          export TEST_NAME_PATTERN='--testNamePattern=\'^(?!.*((report a rate)|(move funds from the Reserve to a custodian and back))).*$`''
+          export TEST_NAME_PATTERN='--testNamePattern=\'^(?!.*((report a rate)|(move funds from the Reserve to a custodian and back))).*$\''
           case ${{ github.event.inputs.network }} in
             'staging')
               export TWILIO_ADDRESS_SID=${{ secrets.STAGING_TWILIO_ADDRESS_SID }}
